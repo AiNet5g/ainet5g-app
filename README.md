@@ -1,72 +1,97 @@
-// 🧠 AI NET 5G+ | ระบบแอปแบบสมบูรณ์ Flutter ทุกแพลตฟอร์ม
+# Lao Super Lottery Theme (v1.0.0)
 
-// 📦 โครงสร้างหลักของระบบ Flutter | Flutter App Main Structure
-lib/
-├── main.dart                         // Entry point ของแอป | App entry point
-├── routes.dart                       // เส้นทางระหว่างหน้า (User / Admin / Host) | Routing between screens
-├── app_config.dart                   // ค่าคงที่ / โดเมน / API URL | Constants / domain / API URLs
-├── themes/app_theme.dart             // ธีมสี Gradient 3D | 3D Gradient theme
-├── .env.example                      // ตัวอย่าง environment สำหรับ Dev วาง API Key | Example environment for dev
+Production-ready WordPress theme for **หวยลาวซุปเปอร์.com** focused on informational content: lottery results, historical overview, articles, and FAQ.
 
-// 🔐 ส่วน Login และ Auth | Login & Auth
-├── auth/
-│   ├── login_screen.dart             // หน้าล็อกอิน (Google / Facebook / LINE) | Login screen
-│   ├── register_screen.dart          // ลงทะเบียน (ถ้าจำเป็น) | Registration screen (if needed)
-│   └── auth_service.dart             // เชื่อมต่อ API Login / Token | API login connector
+## 1) Install as ZIP in WordPress
+1. In repo root, create zip:
+   ```bash
+   cd wp-content/themes
+   zip -r lao-super-lottery-1.0.0.zip lao-super-lottery
+   ```
+2. Open WordPress Admin → **Appearance → Themes → Add New → Upload Theme**
+3. Upload `lao-super-lottery-1.0.0.zip`
+4. Activate theme
 
-// 📱 สำหรับ User ทั่วไป | For General Users
-├── user/
-│   ├── dashboard_screen.dart         // หน้าหลักของผู้ใช้งาน | Main user dashboard
-│   ├── server_list.dart              // แสดงเซิร์ฟเวอร์ที่พร้อมเชื่อม | Server selection
-│   ├── subscription_screen.dart      // แพ็กเกจ / ต่ออายุ / จ่ายเงิน (เฉพาะรายเดือนเท่านั้น) | Monthly subscriptions only
-│   ├── revenue_screen.dart           // รายได้ของ User ที่แชร์ลิงก์ / แชร์ WiFi | Referral/WiFi revenue
-│   ├── usage_history.dart            // ประวัติการใช้งาน / แพ็กเกจที่ซื้อ / วันหมดอายุ | Usage and history
-│   └── user_api.dart                 // API สำหรับฝั่ง User | User-side APIs
-│   └── connect_screen.dart           // ✅ Flutter UI จริงสำหรับหน้าเชื่อมต่อ | Real Flutter Connect UI
+## 2) Theme settings (WP Admin)
+Open **Lao Super Theme** menu:
+- Branding
+- Homepage
+- Lottery Result API
+- SEO Settings
+- On-page Content
+- Mobile Menu
+- Ads / CTA
+- Performance
+- Custom Code
 
-// 📡 สำหรับ Host (มือถือที่ปล่อยเน็ต) | For Hosts (Internet sharers)
-├── host/
-│   ├── host_dashboard.dart           // หน้าควบคุมการปล่อยเน็ต | Network sharing control
-│   ├── host_metrics.dart             // ความเร็ว, จำนวน user ที่รับเน็ต | Speed, client count
-│   ├── host_vpn_config.dart          // ดึง config VPN และเชื่อมเซิร์ฟเวอร์ | VPN Config & Connect
-│   └── host_api.dart                 // API สำหรับฝั่ง Host | Host APIs
+All front-end text can be managed from settings and WP content editor.
 
-// 🧠 ฝั่ง Admin (Web/Desktop) | Admin (Web/Desktop)
-├── admin/
-│   ├── admin_dashboard.dart          // หน้ารวมสถิติ | Dashboard overview
-│   ├── manage_hosts.dart             // จัดการ Host | Manage Hosts
-│   ├── manage_packages.dart          // แพ็กเกจรายวัน/เดือน/ปี | Manage all package types
-│   ├── manage_users.dart             // จัดการผู้ใช้ | Manage users
-│   ├── manage_ai.dart                // ตั้งค่า AI Key (GPT) | AI Configs
-│   ├── manage_revenue.dart           // รายได้ทั่วไป/โรงแรม | General vs Business Revenue
-│   ├── manage_clients.dart           // จัดการลูกค้าโรงแรม | Business Clients
-│   ├── manage_access_roles.dart      // สิทธิ์การเข้าถึงตามหมวด | Role-Based Access Control
-│   ├── api_docs.dart                 // Swagger / Redoc UI + JSON | Full API Docs
-│   └── admin_api.dart                // API สำหรับ Admin ครบฟีเจอร์ | Full Admin APIs
+## 3) API setup
+In **Lottery Result API** section:
+- `API Endpoint`: full URL that returns JSON
+- `API Key`: optional, stored server-side in WP options
+- `Timeout`: request timeout
+- `Fallback*`: fallback dataset used when API fails
 
-// 🌐 ส่วนแชร์ข้ามแพลตฟอร์ม | Cross-platform
-├── components/                      // UI ร่วมใช้ | Shared Components
-├── models/                          // โครงสร้างข้อมูล | Data Models
-├── services/                        // ระบบเชื่อมต่อ API | API Services
-├── widgets/                         // วิดเจ็ตพิเศษ | Special Widgets
-├── mocks/                           // Mock สำหรับ Dev/Test | Dev/Test Mocks
-├── i18n/                            // ไฟล์แปลข้อความ (TH/EN) | Translation Files (TH/EN)
-└── test/                            // Unit / Integration Test เบื้องต้น | Unit / Integration Tests
+Supported response:
 
-// ✅ README.md พร้อม | README Includes:
-// - สรุปโครงสร้างระบบทั้งหมด (Flowchart) | Full System Flowchart
-// - รายละเอียดของหน้าทุกจุดในระบบ (UI Mapping) | UI Screen Mapping
-// - การใช้งานระบบจากมุมมอง Dev + Admin + User | Usage by Roles
-// - วิธี Deploy + Setup Environment + API Key แบบปลอดภัย | Secure Deployment Guide
-// - เชื่อม Swagger / Redoc สำหรับ Docs API ทั้งหมด | Full API Docs
-// - แนบตัวอย่าง API JSON และ Mockup UI ทุกหน้าจอแบบ Preview | Sample APIs + UI Mockups
-// - เอกสารภาษาอังกฤษแยกต่างหาก | English Documentation Included
+```json
+{
+  "date": "2026-04-24",
+  "name": "หวยลาวซุปเปอร์",
+  "results": {
+    "four_digits": "1234",
+    "three_digits": ["123", "456"],
+    "two_digits": ["12", "34"]
+  }
+}
+```
 
-// ✅ หมายเหตุเพิ่มเติม (ต้องห้าม) | Important Notes
-// - ห้ามใช้คำว่า "VPN" แสดงต่อผู้ใช้ทั่วไป | Never use the word "VPN" for general users
-// - ห้ามแสดง IP, port หรือ config แบบ raw ต่อผู้ใช้งานทั่วไป | Never expose raw config/IP
-// - ห้ามให้ผู้ใช้เลือก protocol หรือปรับ config VPN เอง | No user-side VPN config
-// - สัญญาณที่เชื่อมสำเร็จต้องแสดงว่า "AI NET 5G+" | Final signal name must show "AI NET 5G+"
-// - ทุกแพลตฟอร์มต้องติดตั้งแบบระบบปิด | Closed sideload install only
-// - ระบบต้องใช้ Server หลักที่ติดตั้งไว้ใน Vultr | Vultr is mandatory
-// - ต้องมีระบบ Usage Logging และ History สำหรับดูย้อนหลัง | Required detailed logging
+Implementation includes `wp_remote_get()`, timeout, error handling, and transient cache.
+
+## 4) Available shortcodes
+- `[lao_super_result]`
+- `[lao_super_history]`
+- `[lao_super_faq]`
+
+## 5) SEO features
+- Meta description + Open Graph tags from settings
+- JSON-LD schema:
+  - Organization
+  - WebSite
+  - BreadcrumbList
+  - Article
+  - FAQPage
+- Breadcrumb output in theme templates
+
+## 6) Performance features
+- Lazy-load image handling in content
+- Optional deferred theme JS
+- Preload logo/hero image URLs
+- Disable WP emoji scripts/styles
+- Safe asset enqueue without jQuery dependency
+
+## 7) Security controls
+- Sanitized settings inputs
+- Escaped output in templates
+- `current_user_can()` checks in admin page
+- WordPress settings nonce (`settings_fields`)
+- API key not rendered on frontend
+
+## 8) Post-install checklist
+- [ ] Set site title/tagline
+- [ ] Configure menu in Appearance → Menus
+- [ ] Enter API endpoint and key
+- [ ] Fill fallback values
+- [ ] Configure SEO title/description/OG image
+- [ ] Add FAQ JSON
+- [ ] Create homepage and set as static front page
+- [ ] Test mobile menu and result shortcodes
+- [ ] Validate schema in Rich Results Test
+- [ ] Verify Core Web Vitals using PageSpeed Insights
+
+## 9) Policy & compliance notes
+- Keep content informational only; do not guarantee winning outcomes
+- Avoid language that encourages illegal gambling
+- Provide clear disclaimer and responsible-use messaging
+- Prioritize unique, useful analysis content to align with Google Helpful Content principles
